@@ -65,18 +65,4 @@ public class EventController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<Event>> getEventsByCategory(@PathVariable String category) {
-        return ResponseEntity.ok(eventService.findByCategory(category));
-    }
-
-    @GetMapping("/public/{isPublic}")
-    public ResponseEntity<List<Event>> getEventsByPublicStatus(@PathVariable boolean isPublic) {
-        return ResponseEntity.ok(eventService.findByIsPublic(isPublic));
-    }
-
-    @GetMapping("/upcoming")
-    public ResponseEntity<List<Event>> getUpcomingEvents() {
-        return ResponseEntity.ok(eventService.findUpcomingEvents());
-    }
 }

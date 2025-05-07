@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @AllArgsConstructor
@@ -38,10 +40,14 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ToString.Exclude
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ToString.Exclude
     private Group group;
 
     // Constructor without id for creating new users
@@ -53,5 +59,14 @@ public class User {
         this.active = active;
         this.event = event;
         this.group = group;
+    }
+
+    // Constructor without relationships for simpler user creation
+    public User(String username, String email, int age, String hobby, boolean active) {
+        this.username = username;
+        this.email = email;
+        this.age = age;
+        this.hobby = hobby;
+        this.active = active;
     }
 }

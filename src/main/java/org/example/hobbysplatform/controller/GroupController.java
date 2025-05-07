@@ -65,13 +65,4 @@ public class GroupController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/hobby-tag/{hobbyTag}")
-    public ResponseEntity<List<Group>> getGroupsByHobbyTag(@PathVariable String hobbyTag) {
-        return ResponseEntity.ok(groupService.findByHobbyTag(hobbyTag));
-    }
-
-    @GetMapping("/open/{openGroup}")
-    public ResponseEntity<List<Group>> getGroupsByOpenStatus(@PathVariable boolean openGroup) {
-        return ResponseEntity.ok(groupService.findByOpenGroup(openGroup));
-    }
 }
