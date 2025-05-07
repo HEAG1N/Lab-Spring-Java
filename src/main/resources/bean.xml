@@ -5,7 +5,7 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Define Group bean -->
-    <bean id="groupBean" class="org.example.hobbysplatform.Group">
+    <bean id="groupBean" class="org.example.hobbysplatform.model.Group">
         <constructor-arg name="title" value="Aventurieri"/>
         <constructor-arg name="description" value="Grup de drumeții și explorări"/>
         <constructor-arg name="membersCount" value="12"/>
@@ -14,14 +14,14 @@
     </bean>
 
     <!-- Define Event bean -->
-    <bean id="eventBean" class="org.example.hobbysplatform.Event">
+    <bean id="eventBean" class="org.example.hobbysplatform.model.Event">
         <constructor-arg name="name" value="Varavara"/>
         <constructor-arg name="location" value="Ciocana"/>
         <constructor-arg name="date" value="12-05-2025"/>
         <constructor-arg name="category" value="Dans"/>
         <constructor-arg name="isPublic" value="true"/>
     </bean>
-    <bean id="userBean" class="org.example.hobbysplatform.User">
+    <bean id="userBean" class="org.example.hobbysplatform.model.User">
         <constructor-arg name="username" value="Artiom"/>
         <constructor-arg name="email" value="artiom@gmail.com"/>
         <constructor-arg name="age" value="20"/>

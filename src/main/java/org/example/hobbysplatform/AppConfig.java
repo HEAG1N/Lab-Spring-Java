@@ -1,5 +1,7 @@
 package org.example.hobbysplatform;
 
+import org.example.hobbysplatform.model.Event;
+import org.example.hobbysplatform.model.Group;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
