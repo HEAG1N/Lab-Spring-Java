@@ -5,14 +5,18 @@ import org.example.hobbysplatform.model.Group;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Configuration
 public class AppConfig {
     @Bean
-    public Event event(){
-        return new Event("Utopia","PortMall","21-01-2025","Muzica",true);
+    public Event event() {
+        return new Event("Utopia", "PortMall", LocalDate.of(2025, 1, 21), "Muzica", true);
     }
+
     @Bean
-    public Group group(){
-        return new Group("Titlu","descriptie",23,false,"Hobbytag");
+    public Group group() {
+        return new Group("Titlu", "descriptie", 23, false, "Hobbytag");
     }
 }
