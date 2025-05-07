@@ -1,23 +1,52 @@
 package org.example.hobbysplatform;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 public class HobbysPlatformApplication {
 
     public static void main(String[] args) {
-        User user = new User("alex123", "alex@email.com", 28, "drumeții", true);
-        System.out.println("Utilizator: " + user);
-        System.out.println("Hobby inițial: " + user.getHobby());
-        user.setHobby("cățărat");
-        System.out.println("Hobby actualizat: " + user.getHobby());
-        Event event = new Event("Ieșire în Munții Bucegi", "Sinaia", "2025-06-01", "Drumeții", true);
-        System.out.println("Eveniment: " + event);
-        event.setLocation("Busteni");
-        System.out.println("Locație nouă: " + event.getLocation());
-        Group group = new Group("Aventurieri", "Grup de drumeții și explorări", 12, true, "drumeții");
-        System.out.println("Grup: " + group);
+        ApplicationContext context = SpringApplication.run(HobbysPlatformApplication.class, args);
+        // Obținerea bean-urilor din context folosind context.getBean()
+        Event event = context.getBean(Event.class);
+        Group group = context.getBean(Group.class);
+
+        // Afișarea informațiilor despre bean-uri pentru verificare
+        System.out.println("Event bean: " + event);
+        System.out.println("Group bean: " + group);
+
+        // Obținerea user-ului cu injecție prin constructor
+        User userConstructor = context.getBean("userWithConstructorInjection", User.class);
+        System.out.println("User with constructor injection: " + userConstructor);
+
+        // Obținerea user-ului cu injecție prin setter
+        User userSetter = context.getBean("userWithSetterInjection", User.class);
+        System.out.println("User with setter injection: " + userSetter);
     }
 
+    // Bean creat prin constructor - injecție prin constructor
+    @Bean
+    public User userWithConstructorInjection(Event event, Group group) {
+        return new User("username1", "email1@example.com", 25, "Reading", true, event, group);
+    }
+
+    // Bean creat cu setter injection
+    @Bean
+    public User userWithSetterInjection(Event event, Group group) {
+        User user = new User();
+        user.setUsername("username2");
+        user.setEmail("email2@example.com");
+        user.setAge(30);
+        user.setHobby("Gaming");
+        user.setActive(true);
+        // Folosim setteri explicit în loc să ne bazăm pe @Autowired
+        user.setEvent(event);
+        user.setGroup(group);
+        return user;
+    }
 }

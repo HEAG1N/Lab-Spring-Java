@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define Group bean -->
+    <bean id="groupBean" class="org.example.hobbysplatform.Group">
+        <constructor-arg name="title" value="Aventurieri"/>
+        <constructor-arg name="description" value="Grup de drumeții și explorări"/>
+        <constructor-arg name="membersCount" value="12"/>
+        <constructor-arg name="openGroup" value="true"/>
+        <constructor-arg name="hobbyTag" value="drumeții"/>
+    </bean>
+
+    <!-- Define Event bean -->
+    <bean id="eventBean" class="org.example.hobbysplatform.Event">
+        <constructor-arg name="name" value="Varavara"/>
+        <constructor-arg name="location" value="Ciocana"/>
+        <constructor-arg name="date" value="12-05-2025"/>
+        <constructor-arg name="category" value="Dans"/>
+        <constructor-arg name="isPublic" value="true"/>
+    </bean>
+    <bean id="userBean" class="org.example.hobbysplatform.User">
+        <constructor-arg name="username" value="Artiom"/>
+        <constructor-arg name="email" value="artiom@gmail.com"/>
+        <constructor-arg name="age" value="20"/>
+        <constructor-arg name="hobby" value="basketball"/>
+        <constructor-arg name="active" value="true"/>
+        <constructor-arg name="event" ref="eventBean"/>
+        <constructor-arg name="group" ref="groupBean"/>
+    </bean>
+</beans>
